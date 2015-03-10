@@ -1,0 +1,21 @@
+# Default make file
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
+# Added commands
+SOURCESUPPORT=$(wildcard A/*.cpp B/*.cpp)
+
+OBJECTS = main.o
+OBJS = $(SOURCESUPPORT:.cpp=.o)
+
+PKG_CPPFLAGS=-I.
+
+PKG_LIBS = libsupport.a
+
+all: libsupport.a $(SHLIB)
+
+$(SHLIB): libsupport.a $(OBJECTS)
+libsupport.a: $(OBJS)
+
+clean:
+	@rm -f $(SHLIB) $(OBJECTS)
+	@rm -f $(OBJS)
