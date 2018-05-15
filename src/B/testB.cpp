@@ -2,7 +2,9 @@
 #include "testB.h"
 using namespace Rcpp;
 
-// [[Rcpp::export]]
+// This function cannot be exported via Rcpp Attributes as
+// it is in a subfolder for src/
+
 double testfunctionB(const arma::colvec & x) {
     double v = arma::as_scalar(x.t() * x);
     return v;
