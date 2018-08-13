@@ -1,11 +1,15 @@
 Package: SubdirSrc
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2015-03-10
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Title: Embedding Compiled Code In Subdirectories of Src
+Version: 0.0.0.9000
+Authors@R: person("James", "Balamuta", email = "balamut2@illinois.edu", role = c("aut", "cre"))
+Description: Provides an implementation of how to modify a Makevars file to
+    permit compilation of code found in a subdirectory of the `src` directory.
+BugReports: https://github.com/r-pkg-examples/rcpp-headers-subdirs
+Depends: R (>= 3.4.0)
 Imports: Rcpp (>= 0.11.5)
-LinkingTo: Rcpp, RcppArmadillo
+LinkingTo: Rcpp
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
