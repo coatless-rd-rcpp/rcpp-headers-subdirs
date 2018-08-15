@@ -27,8 +27,7 @@ to:
 
 ```bash
 src/
-    |-> Makevars
-    |-> Makevars.win
+    |-> Makevars.in
     |-> r-accessor-to-code.cpp
     |-> A
         |-> routineA.cpp
@@ -39,11 +38,11 @@ src/
 ```
 
 **Note: There is no way to use 
-[Rcpp Attributes in subfolders](http://lists.r-forge.r-project.org/pipermail/rcpp-devel/2015-March/008473.html).**
-That is, you cannot export a function in a subfolder using `// [[Rcpp::export]]`. 
+[Rcpp Attributes in subdirectories](http://lists.r-forge.r-project.org/pipermail/rcpp-devel/2015-March/008473.html).**
+That is, you cannot export a function in a subdirectory of `src/` using `// [[Rcpp::export]]`. 
 Thus, you would need to create and export an intermediary function in `src/`, e.g.
-[`testfunction()`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/main.cpp#L7-L10)
-in [`main.cpp`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/main.cpp). Make sure to include the headers associated with the subdirectories and that the headers have an _inclusion guard_. 
+[`calc_modifications()`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L22-L34)
+in [`r-accessor-to-code.cpp`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp). Make sure to include the headers associated with the subdirectories and that the headers have an _inclusion guard_. 
 
 ### Usage
 
@@ -61,6 +60,11 @@ With a compiler in hand, one can then install the package from GitHub by:
 devtools::install_github("r-pkg-examples/rcpp-headers-subdirs")
 library("SubdirSrc")
 ```
+
+### Implementation Details
+
+To do
+
 
 ## License
 
