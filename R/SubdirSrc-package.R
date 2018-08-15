@@ -1,0 +1,2 @@
+#' @useDynLib SubdirSrc
+"_PACKAGE"
