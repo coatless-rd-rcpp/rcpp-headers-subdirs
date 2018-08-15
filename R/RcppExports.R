@@ -16,7 +16,7 @@
 #' my_vec = c(3.5, 8, -1.5, -2, 0, 42)
 #' calc_modifications(my_vec)
 calc_modifications <- function(x) {
-    .Call('_SubdirSrc_calc_modifications', PACKAGE = 'SubdirSrc', x)
+    .Call(`_SubdirSrc_calc_modifications`, x)
 }
 
 #' @rdname exported_funcs
@@ -32,7 +32,7 @@ calc_modifications <- function(x) {
 #' my_vecA = c(881, 884, 1,2,-4)
 #' calc_A_export(my_vec)
 calc_A_export <- function(x) {
-    .Call('_SubdirSrc_calc_A_export', PACKAGE = 'SubdirSrc', x)
+    .Call(`_SubdirSrc_calc_A_export`, x)
 }
 
 #' @rdname exported_funcs
@@ -41,6 +41,6 @@ calc_A_export <- function(x) {
 #' my_vecB = c(512,32, -1, 1.3, 5.9)
 #' calc_B_export(my_vecB)
 calc_B_export <- function(x) {
-    .Call('_SubdirSrc_calc_B_export', PACKAGE = 'SubdirSrc', x)
+    .Call(`_SubdirSrc_calc_B_export`, x)
 }
 
