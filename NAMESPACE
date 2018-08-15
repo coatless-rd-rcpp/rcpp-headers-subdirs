@@ -3,4 +3,5 @@
 export(calc_A_export)
 export(calc_B_export)
 export(calc_modifications)
-useDynLib(SubdirSrc)
+importFrom(Rcpp,sourceCpp)
+useDynLib(SubdirSrc, .registration = TRUE)

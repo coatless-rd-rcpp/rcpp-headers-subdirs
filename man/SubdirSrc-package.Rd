@@ -7,7 +7,7 @@
 \title{SubdirSrc: Embedding Compiled Code In Subdirectories of Src}
 \description{
 Provides an implementation of how to modify a Makevars file to
-permit compilation of code found in a subdirectory of the `src` directory.
+    permit compilation of code found in a subdirectory of the `src` directory.
 }
 \seealso{
 Useful links:
