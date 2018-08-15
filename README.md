@@ -15,11 +15,11 @@ In essence, this project shows how to go from:
 src/
     |-> Makevars
     |-> Makevars.win
-    |-> main.cpp
-    |-> testA.cpp
-    |-> testA.h
-    |-> testB.cpp
-    |-> testB.h
+    |-> r-accessor-to-code.cpp
+    |-> routineA.cpp
+    |-> routineA.h
+    |-> routineB.cpp
+    |-> routineB.h
 ```
 
 to: 
@@ -29,13 +29,13 @@ to:
 src/
     |-> Makevars
     |-> Makevars.win
-    |-> main.cpp
+    |-> r-accessor-to-code.cpp
     |-> A
-        |-> testA.cpp
-        |-> testA.h
+        |-> routineA.cpp
+        |-> routineA.h
     |-> B
-        |-> testB.cpp
-        |-> testB.h
+        |-> routineB.cpp
+        |-> routineB.h
 ```
 
 **Note: There is no way to use 
