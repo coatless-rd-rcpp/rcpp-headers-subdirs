@@ -2,12 +2,14 @@
 PKG_CPPFLAGS=-I.
 PKG_LIBS=$(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
-# Added commands
-SOURCES=$(wildcard A/*.cpp B/*.cpp)
+# Retrieve all cpp files in src/, src/A and src/B directories
+SOURCES=$(wildcard ./*.cpp A/*.cpp B/*.cpp)
 
-OBJECTS=main.o $(SOURCES:.cpp=.o)
+# Obtain the object files
+OBJECTS=$(SOURCES:.cpp=.o)
 
 all: $(SHLIB)
 
+# Provide recipe to remove all objects
 clean:
 	@rm -f $(OBJECTS)
