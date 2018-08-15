@@ -1,12 +1,12 @@
 # Default make file
 PKG_CPPFLAGS=-I.
-PKG_LIBS=$(ARCHLIB) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+PKG_LIBS=$(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
-# Retrieve all cpp files in src/A and src/B directories
-SOURCES=r-accessor-to-code.cpp @SUBDIR_SOURCES@
+# Include all C++ files in src/ and its subdirectories: src/A and src/B 
+SOURCES=r-accessor-to-code.cpp RcppExports.cpp @SUBDIR_SOURCES@
 
 # Obtain the object files
-OBJECTS=$(SOURCES:.cpp=.o)
+OBJECTS=$(SOURCES:.cpp=.o) 
 
 all: $(SHLIB)
 
