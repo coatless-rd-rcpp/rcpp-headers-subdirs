@@ -7,3 +7,4 @@ src/*.dll
 src/*/*.o
 src/*/*.so
 src/*/*.dll
+src/Makevars

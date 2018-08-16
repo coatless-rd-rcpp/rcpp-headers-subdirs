@@ -8,6 +8,7 @@ SOURCES=r-accessor-to-code.cpp RcppExports.cpp @SUBDIR_SOURCES@
 # Obtain the object files
 OBJECTS=$(SOURCES:.cpp=.o) 
 
+# Make the shared object
 all: $(SHLIB)
 
 # Provide recipe to remove all objects
