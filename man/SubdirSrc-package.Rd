@@ -6,13 +6,14 @@
 \alias{SubdirSrc-package}
 \title{SubdirSrc: Embedding Compiled Code In Subdirectories of Src}
 \description{
-Provides an implementation of how to modify a Makevars file to
-    permit compilation of code found in a subdirectory of the `src` directory.
+Provides an implementation of how to modify a Makevars file to permit compilation of code found in a subdirectory of the `src` directory.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item Report bugs at \url{https://github.com/r-pkg-examples/rcpp-headers-subdirs}
+  \item \url{https://rd-rcpp.thecoatlessprofessor.com/rcpp-headers-subdirs/}
+  \item \url{https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs}
+  \item Report bugs at \url{https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/issues}
 }
 
 }

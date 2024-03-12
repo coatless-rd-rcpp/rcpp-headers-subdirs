@@ -1,10 +1,12 @@
 ## Including C++ code in a Subdirectory within the Src Directory
 
-[![Travis-CI Build Status](https://travis-ci.org/r-pkg-examples/rcpp-headers-subdirs.svg?branch=master)](https://travis-ci.org/r-pkg-examples/rcpp-headers-subdirs)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 The `SubdirSrc` R package shows how to embed code in subdirectories within the
-[`src/`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/tree/master/src)
-folder by modifying the [`Makevars` file](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/Makevars), as specified in 
+[`src/`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/tree/master/src)
+folder by modifying the [`Makevars` file](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/Makevars), as specified in 
 [Section: 1.2.1 Using Makevars](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Using-Makevars)
 of [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html),
 which is a variant of [`Make`](https://www.gnu.org/software/make/manual/make.html) that is _unique_ to _R_.
@@ -41,8 +43,8 @@ src/
 [Rcpp Attributes in subdirectories](http://lists.r-forge.r-project.org/pipermail/rcpp-devel/2015-March/008473.html).**
 That is, you cannot export a function in a subdirectory of `src/` using `// [[Rcpp::export]]`. 
 Thus, you would need to create and export an intermediary function in `src/`, e.g.
-[`calc_modifications()`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L22-L34)
-in [`r-accessor-to-code.cpp`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp). Make sure to include the headers associated with the subdirectories and that the headers have an _inclusion guard_. 
+[`calc_modifications()`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L22-L34)
+in [`r-accessor-to-code.cpp`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp). Make sure to include the headers associated with the subdirectories and that the headers have an _inclusion guard_. 
 
 ### Usage
 
@@ -56,8 +58,8 @@ guides.
 With a compiler in hand, one can then install the package from GitHub by:
 
 ```r
-# install.packages("devtools")
-devtools::install_github("r-pkg-examples/rcpp-headers-subdirs")
+# install.packages("remotes")
+remotes::install_github("coatless-rd-rcpp/rcpp-headers-subdirs")
 library("SubdirSrc")
 ```
 
@@ -70,11 +72,11 @@ added but not included. Dynamically retrieving files in the subdirectory and
 writing their names is preferred approach as it is more robust to such change. 
 
 As a result, the package uses a
-[`configure` file](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/configure)
+[`configure` file](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure)
 to obtain the names of the files and write them to `src/Makevars`. 
-This [`configure` file](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/configure) 
+This [`configure` file](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure) 
 is generated from
-[`configure.ac`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/configure.ac) 
+[`configure.ac`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure.ac) 
 after running [`autoconf`](https://www.gnu.org/software/autoconf/autoconf.html)
 once in terminal. The dynamic writing relies on the presence of a generic template,
 `src/Makevars.in`, that will produce an output file, `src/Makevars` with
@@ -133,12 +135,12 @@ clean:
 
 From here, any functions in the subdirectories can be used by including the
 relevant header file with the function definitions. As an example,
-consider [`src/A/routineA.cpp`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/A/routineA.cpp), which stores the function implementation, and [`src/A/routineA.h`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/A/routineA.h), which stores the function definition and incorporates an 
+consider [`src/A/routineA.cpp`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/A/routineA.cpp), which stores the function implementation, and [`src/A/routineA.h`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/A/routineA.h), which stores the function definition and incorporates an 
 inclusion guard to ensure only one copy of the header file is included. 
 
 Though, to use subdirectory functions as a traditional _R_ function, one must 
 specify and export using Rcpp an intermediary function that rests in `src/`. 
-An example of this can be found in [lines 36 - 53 of `src/r-accessor-to-code.cpp`](https://github.com/r-pkg-examples/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L36-L53).
+An example of this can be found in [lines 36 - 53 of `src/r-accessor-to-code.cpp`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L36-L53).
 
 ### Alternative Implementation Strategies
 
