@@ -8,7 +8,7 @@ Description: Provides an implementation of how to modify a Makevars file to
 URL: https://rd-rcpp.thecoatlessprofessor.com/rcpp-headers-subdirs/, https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs
 BugReports: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/issues
 Depends: R (>= 4.3.0)
-Imports: Rcpp (>= 1.0.12)
+Imports: Rcpp (>= 1.1.1)
 LinkingTo: Rcpp
 License: GPL (>= 2)
 Encoding: UTF-8
