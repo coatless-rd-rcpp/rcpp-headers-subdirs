@@ -5,11 +5,11 @@
 <!-- badges: end -->
 
 The `SubdirSrc` R package shows how to embed code in subdirectories within the
-[`src/`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/tree/master/src)
-folder by modifying the [`Makevars` file](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/Makevars), as specified in 
-[Section: 1.2.1 Using Makevars](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Using-Makevars)
-of [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html),
-which is a variant of [`Make`](https://www.gnu.org/software/make/manual/make.html) that is _unique_ to _R_.
+[`src/`][src-dir]
+folder by modifying the [`Makevars` file][makevars], as specified in 
+[Section: 1.2.1 Using Makevars][using-makevars]
+of [Writing R Extensions][writing-r-extensions],
+which is a variant of [`Make`][make] that is _unique_ to _R_.
 
 In essence, this project shows how to go from:
 
@@ -40,19 +40,19 @@ src/
 ```
 
 **Note: There is no way to use 
-[Rcpp Attributes in subdirectories](http://lists.r-forge.r-project.org/pipermail/rcpp-devel/2015-March/008473.html).**
+[Rcpp Attributes in subdirectories][rcpp-attributes].**
 That is, you cannot export a function in a subdirectory of `src/` using `// [[Rcpp::export]]`. 
 Thus, you would need to create and export an intermediary function in `src/`, e.g.
-[`calc_modifications()`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L22-L34)
-in [`r-accessor-to-code.cpp`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp). Make sure to include the headers associated with the subdirectories and that the headers have an _inclusion guard_. 
+[`calc_modifications()`][calc-modifications]
+in [`r-accessor-to-code.cpp`][r-accessor]. Make sure to include the headers associated with the subdirectories and that the headers have an _inclusion guard_. 
 
 ### Usage
 
 To install the package, you must first have a compiler on your system that is 
 compatible with R. For help on obtaining a compiler consult either
-[macOS](http://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-os-x/)
+[macOS][compiler-macos]
 or 
-[Windows](http://thecoatlessprofessor.com/programming/rcpp/install-rtools-for-rcpp/)
+[Windows][compiler-windows]
 guides.
 
 With a compiler in hand, one can then install the package from GitHub by:
@@ -72,12 +72,12 @@ added but not included. Dynamically retrieving files in the subdirectory and
 writing their names is preferred approach as it is more robust to such change. 
 
 As a result, the package uses a
-[`configure` file](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure)
+[`configure` file][configure]
 to obtain the names of the files and write them to `src/Makevars`. 
-This [`configure` file](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure) 
+This [`configure` file][configure] 
 is generated from
-[`configure.ac`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure.ac) 
-after running [`autoconf`](https://www.gnu.org/software/autoconf/autoconf.html)
+[`configure.ac`][configure-ac] 
+after running [`autoconf`][autoconf]
 once in terminal. The dynamic writing relies on the presence of a generic template,
 `src/Makevars.in`, that will produce an output file, `src/Makevars` with
 appropriate variables and/or paths set.
@@ -135,12 +135,12 @@ clean:
 
 From here, any functions in the subdirectories can be used by including the
 relevant header file with the function definitions. As an example,
-consider [`src/A/routineA.cpp`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/A/routineA.cpp), which stores the function implementation, and [`src/A/routineA.h`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/A/routineA.h), which stores the function definition and incorporates an 
+consider [`src/A/routineA.cpp`][routinea-cpp], which stores the function implementation, and [`src/A/routineA.h`][routinea-h], which stores the function definition and incorporates an 
 inclusion guard to ensure only one copy of the header file is included. 
 
 Though, to use subdirectory functions as a traditional _R_ function, one must 
 specify and export using Rcpp an intermediary function that rests in `src/`. 
-An example of this can be found in [lines 36 - 53 of `src/r-accessor-to-code.cpp`](https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L36-L53).
+An example of this can be found in [lines 36 - 53 of `src/r-accessor-to-code.cpp`][r-accessor-lines].
 
 ### Alternative Implementation Strategies
 
@@ -149,12 +149,12 @@ use of `autoconf`. There are two other approaches that are possible:
 
 1. Creating `configure` script using `sh` that determines the package sources
    and dynamically writes them to `src/Makevars` using `sed`.
-    - [Jeroen Ooms](https://github.com/jeroen) out of 
-      [rOpenSci](http://ropensci.org/) opts to call this approach `anticonf`. 
-      An example of this approach can be seen in the [`curl` package](https://github.com/jeroen/curl/blob/master/configure#L1).
+    - [Jeroen Ooms][jeroen] out of 
+      [rOpenSci][ropensci] opts to call this approach `anticonf`. 
+      An example of this approach can be seen in the [`curl` package][curl-pkg].
 2. Attempting a wildcard approach specified in 
-   [Section 1.2.1.3: Compiling in sub-directories](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Compiling-in-sub_002ddirectories) of 
-   [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
+   [Section 1.2.1.3: Compiling in sub-directories][compiling-subdirs] of 
+   [Writing R Extensions][writing-r-extensions]
 
 The first option is viable, but uncommon. I opted to avoid this implementation
 to gently provide a standalone example of an `autoconf` setup.
@@ -191,3 +191,24 @@ GNU make is a SystemRequirements.
 ## License
 
 GPL (\>= 2)
+
+[autoconf]: https://www.gnu.org/software/autoconf/autoconf.html
+[calc-modifications]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L22-L34
+[compiler-macos]: http://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-os-x/
+[compiler-windows]: http://thecoatlessprofessor.com/programming/rcpp/install-rtools-for-rcpp/
+[compiling-subdirs]: https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Compiling-in-sub_002ddirectories
+[configure]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure
+[configure-ac]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/configure.ac
+[curl-pkg]: https://github.com/jeroen/curl/blob/master/configure#L1
+[jeroen]: https://github.com/jeroen
+[make]: https://www.gnu.org/software/make/manual/make.html
+[makevars]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/Makevars
+[r-accessor]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp
+[r-accessor-lines]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/r-accessor-to-code.cpp#L36-L53
+[rcpp-attributes]: http://lists.r-forge.r-project.org/pipermail/rcpp-devel/2015-March/008473.html
+[ropensci]: http://ropensci.org/
+[routinea-cpp]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/A/routineA.cpp
+[routinea-h]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/blob/master/src/A/routineA.h
+[src-dir]: https://github.com/coatless-rd-rcpp/rcpp-headers-subdirs/tree/master/src
+[using-makevars]: https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Using-Makevars
+[writing-r-extensions]: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
